@@ -1,0 +1,4 @@
+repository "NPC@xentriom@cloud"
+  path "/"
+    br "/main"
+    co "/main"
