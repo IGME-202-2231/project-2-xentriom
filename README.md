@@ -7,19 +7,16 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 ### Student Info
 
 -   Name: Jason Chen
--   Section: _##_
+-   Section: 05
 
 ## Simulation Design
 
-I have 2 designs in mind, which I'm still thinking over
-- A space sim with asteroids, comments, stars, and planets. They will circle asteroids and may group up and form asteroid belts while comets will avoid each other.
-- An aquarium with different species of marine life. Same species may flock together and some species may avoid each other.
+- An aquarium with different species of marine life. Some species may flock together and some species may avoid each other.
 
 ### Controls
 
 -   Ideally, I want the player to have no control but for the requirement
--   Space - You can press on a star to interact with it
--   Aquarium - You can drop fish in of different kinds
+-   You can drop fish in of different kinds
 
 ## _Agent 1 Name_
 
@@ -31,17 +28,15 @@ The agents are listed in the Simulation Design section.
 
 #### Steering Behaviors
 
-- _List all behaviors used by this state_
-   - _If behavior has input data list it here_
-   - _eg, Flee - nearest Agent2_
+- Flee - bigger fish
 - Obstacles - _List all obstacle types this state avoids_
 - Seperation - _List all agents this state seperates from_
    
-#### State Transistions
+#### State Transitions
 
 - _List all the ways this agent can transition to this state_
    - _eg, When this agent gets within range of Agent2_
-   - _eg, When this agent has reached target of State2_
+   - _eg, When this agent has reached the target of State2_
    
 ### _State 2 Name_
 
