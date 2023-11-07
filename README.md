@@ -6,22 +6,24 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 
 ### Student Info
 
--   Name: _YOUR NAME_
+-   Name: Jason Chen
 -   Section: _##_
 
 ## Simulation Design
 
-_A brief explanation of your simulation._
+I have 2 designs in mind, which I'm still thinking over
+- A space sim with asteroids, comments, stars, and planets. They will circle asteroids and may group up and form asteroid belts while comets will avoid each other.
+- An aquarium with different species of marine life. Same species may flock together and some species may avoid each other.
 
 ### Controls
 
--   _List all of the actions the player can have in your simulation_
-    -   _Include how to preform each action ( keyboard, mouse, UI Input )_
-    -   _Include what impact an action has in the simulation ( if is could be unclear )_
+-   Ideally, I want the player to have no control but for the requirement
+-   Space - You can press on a star to interact with it
+-   Aquarium - You can drop fish in of different kinds
 
 ## _Agent 1 Name_
 
-_A brief explanation of this agent._
+The agents are listed in the Simulation Design section.
 
 ### _State 1 Name_
 
