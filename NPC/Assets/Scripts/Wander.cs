@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wander : MonoBehaviour
+public class Wander : Agent
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Min(1f)] public float wanderWeight = 1f;
+    [Min(1f)] public float stayInBoundWeight = 3f;
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
+    }
+
+    protected override void CalcSteeringForces()
+    {
+        Wander(wanderWeight);
+        StayInBounds(stayInBoundWeight);
     }
 }
