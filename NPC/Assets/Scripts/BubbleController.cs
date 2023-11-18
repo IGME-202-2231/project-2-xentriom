@@ -56,7 +56,10 @@ public class BubbleController : MonoBehaviour
 
     private SpriteRenderer GetRandomBubbleRenderer()
     {
-        SpriteRenderer[] bubbleRenderers = { smallBubbleRenderer, mediumBubbleRenderer, largeBubbleRenderer };
+        SpriteRenderer[] bubbleRenderers = {
+            smallBubbleRenderer,
+            mediumBubbleRenderer,
+            largeBubbleRenderer };
         int randomIndex = Random.Range(0, 3);
         return bubbleRenderers[randomIndex];
     }
@@ -66,26 +69,6 @@ public class BubbleController : MonoBehaviour
         string[] sortingLayers = { "Farground", "Foreground", "Midground" };
         int randomIndex = Random.Range(0, sortingLayers.Length);
         return sortingLayers[randomIndex];
-    }
-
-    private IEnumerator MoveUp(GameObject bubble, float speed)
-    {
-        float destructionChance = 0f;
-
-        while (true)
-        {
-            bubble.transform.Translate(Vector2.up * speed * Time.deltaTime);
-
-            destructionChance += 0.1f * bubble.transform.position.y;
-
-            if (Random.value < destructionChance + Random.Range(0f, 0.06f))
-            {
-                Destroy(bubble);
-                yield break;
-            }
-
-            yield return null;
-        }
     }
 
     private IEnumerator MoveUp(GameObject bubble, float speed, float swayIntensity)
