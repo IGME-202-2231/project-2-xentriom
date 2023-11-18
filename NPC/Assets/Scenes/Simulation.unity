@@ -265,6 +265,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7450156274003918439, guid: b45dad24a271842d4bac7c59c7056c45, type: 3}
   m_PrefabInstance: {fileID: 4316638141352485200}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1343988167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1343988169}
+  - component: {fileID: 1343988168}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1343988168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343988167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9a41e49f0954b0bb40677e4d0442ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallBubbleRenderer: {fileID: 1570372318676051244, guid: 770846bb307aa46c785a20d717529c83, type: 3}
+  mediumBubbleRenderer: {fileID: 4934940910640697666, guid: c8520a4a954304ed4b692ce79c8a8d43, type: 3}
+  largeBubbleRenderer: {fileID: 5639568601309120569, guid: db4bafe3c5a08492eb28989e6498b7e8, type: 3}
+  minNumberOfBubbles: 1
+  maxNumberOfBubbles: 10
+  minSpawnInterval: 2
+  maxSpawnInterval: 10
+  bubbleSpeed: 1.5
+--- !u!4 &1343988169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1343988167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25374892, y: -0.25865972, z: -0.048529826}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &436828507132821185
 PrefabInstance:
   m_ObjectHideFlags: 0
