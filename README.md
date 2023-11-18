@@ -22,33 +22,33 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 
 The smaller fish will flock together and try to stay near each other. If the group is too large they will split into smaller groups. They will also attempt to avoid the bigger fishes.
 
-### Seek Group
+### Flock
 
 **Objective:** Will seek and join a group.
 
 #### Steering Behaviors
 
 - Flee - Big Fish
-- Obstacles - N/A
-- Seperation - N/A
+- Flock - joins together up to 10 (exact number may change)
+- Seperation - If comes in contact with big fish, everyone will scatter OR if the group is too big they will split into 2 smaller ones
    
 #### State Transitions
 
 - You can only be in this state if you are not already in a group
    
-### _State 2 Name_
+### Wander
 
-**Objective:** _A brief explanation of this state's objective._
+**Objective:** The fish will wander around and attempt to join groups within its detection range. It will also have a much bigger flee range to flee to big fishes. They will also seek fish food dropped by the player.
 
 #### Steering Behaviors
 
-- _List all behaviors used by this state_
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
+- Wander - Self explanitory
+- Flee - Bigger range from other state and flees from big shark
+- Seek - Seek food
    
 #### State Transistions
 
-- _List all the ways this agent can transition to this state_
+If seperated from group and alone, you will be in this state
 
 ## Big Fish
 
@@ -83,8 +83,7 @@ The bigger fish will avoid each other and for the most part wander around aimles
 
 ## Sources
 
--   _List all project sources here –models, textures, sound clips, assets, etc._
--   _If an asset is from the Unity store, include a link to the page and the author’s name_
+-   Background: https://olgas-lab.itch.io/underwater-background
 
 ## Make it Your Own
 
