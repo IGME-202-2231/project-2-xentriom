@@ -1,8 +1,6 @@
-# Project _NAME_
+# Reef Rendezvous
 
 [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet)
-
-_REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 
 ### Student Info
 
@@ -11,89 +9,84 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 
 ## Simulation Design
 
-- An aquarium with different species of marine life. Some species may flock together and some species may avoid each other.
+- An tropical sea of marine life
 
 ### Controls
 
 -   Ideally, I want the player to have no control but for the requirement
--   You can drop fish in of different kinds
+-   You can drop small fish food in and the smaller fish will try and get it.
 
-## _Agent 1 Name_
+## Small Fish
 
-The agents are listed in the Simulation Design section.
+The smaller fish will flock together and try to stay near each other. If the group is too large they will split into smaller groups. They will also attempt to avoid the bigger fishes.
 
-### _State 1 Name_
+### Flock
 
-**Objective:** _A brief explanation of this state's objective._
+**Objective:** Will seek and join a group.
 
 #### Steering Behaviors
 
-- Flee - bigger fish
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
+- Flee - Big Fish
+- Flock - joins together up to 10 (exact number may change)
+- Seperation - If comes in contact with big fish, everyone will scatter OR if the group is too big they will split into 2 smaller ones
    
 #### State Transitions
 
-- _List all the ways this agent can transition to this state_
-   - _eg, When this agent gets within range of Agent2_
-   - _eg, When this agent has reached the target of State2_
+- You can only be in this state if you are not already in a group
    
-### _State 2 Name_
+### Wander
 
-**Objective:** _A brief explanation of this state's objective._
+**Objective:** The fish will wander around and attempt to join groups within its detection range. It will also have a much bigger flee range to flee to big fishes. They will also seek fish food dropped by the player.
 
 #### Steering Behaviors
 
-- _List all behaviors used by this state_
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
+- Wander - Self explanitory
+- Flee - Bigger range from other state and flees from big shark
+- Seek - Seek food
    
 #### State Transistions
 
-- _List all the ways this agent can transition to this state_
+If seperated from group and alone, you will be in this state
 
-## _Agent 2 Name_
+## Big Fish
 
-_A brief explanation of this agent._
+The bigger fish will avoid each other and for the most part wander around aimlessly.
 
-### _State 1 Name_
+### Chase
 
-**Objective:** _A brief explanation of this state's objective._
+**Objective:** Chase a lonely small fish and "eat" it
 
 #### Steering Behaviors
 
-- _List all behaviors used by this state_
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
+- Seek - Small Fish
+- Obstacles - Other Big Fish
+- Seperation - N/A
    
 #### State Transistions
 
-- _List all the ways this agent can transition to this state_
+- If a small fish is within detection range AND they are alone
    
-### _State 2 Name_
+### Wander
 
-**Objective:** _A brief explanation of this state's objective._
+**Objective:** Wander around the world, enjoying life.
 
 #### Steering Behaviors
 
-- _List all behaviors used by this state_
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
+- Wander - Self explanitory
+- Obstacles - Other Big Fish
    
 #### State Transistions
 
-- _List all the ways this agent can transition to this state_
+-Default state, will change to this state if cannot Chase.
 
 ## Sources
 
--   _List all project sources here –models, textures, sound clips, assets, etc._
--   _If an asset is from the Unity store, include a link to the page and the author’s name_
+-   Background: https://olgas-lab.itch.io/underwater-background
 
 ## Make it Your Own
 
-- _List out what you added to your game to make it different for you_
-- _If you will add more agents or states make sure to list here and add it to the documention above_
-- _If you will add your own assets make sure to list it here and add it to the Sources section
+- New Agent: Jellyfish - Neutral mob that just bobs up and down, has a 5% chance to wander for 5 seconds (Everything will avoid the Jellyfish)
+- Soon to be more
 
 ## Known Issues
 
