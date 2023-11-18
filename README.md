@@ -16,27 +16,25 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 ### Controls
 
 -   Ideally, I want the player to have no control but for the requirement
--   You can drop fish in of different kinds
+-   You can drop small fish food in and the smaller fish will try and get it.
 
-## _Agent 1 Name_
+## Small Fish
 
-The agents are listed in the Simulation Design section.
+The smaller fish will flock together and try to stay near each other. If the group is too large they will split into smaller groups. They will also attempt to avoid the bigger fishes.
 
-### _State 1 Name_
+### Seek Group
 
-**Objective:** _A brief explanation of this state's objective._
+**Objective:** Will seek and join a group.
 
 #### Steering Behaviors
 
-- Flee - bigger fish
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
+- Flee - Big Fish
+- Obstacles - N/A
+- Seperation - N/A
    
 #### State Transitions
 
-- _List all the ways this agent can transition to this state_
-   - _eg, When this agent gets within range of Agent2_
-   - _eg, When this agent has reached the target of State2_
+- You can only be in this state if you are not already in a group
    
 ### _State 2 Name_
 
@@ -52,37 +50,36 @@ The agents are listed in the Simulation Design section.
 
 - _List all the ways this agent can transition to this state_
 
-## _Agent 2 Name_
+## Big Fish
 
-_A brief explanation of this agent._
+The bigger fish will avoid each other and for the most part wander around aimlessly.
 
-### _State 1 Name_
+### Chase
 
-**Objective:** _A brief explanation of this state's objective._
-
-#### Steering Behaviors
-
-- _List all behaviors used by this state_
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
-   
-#### State Transistions
-
-- _List all the ways this agent can transition to this state_
-   
-### _State 2 Name_
-
-**Objective:** _A brief explanation of this state's objective._
+**Objective:** Chase a lonely small fish and "eat" it
 
 #### Steering Behaviors
 
-- _List all behaviors used by this state_
-- Obstacles - _List all obstacle types this state avoids_
-- Seperation - _List all agents this state seperates from_
+- Seek - Small Fish
+- Obstacles - Other Big Fish
+- Seperation - N/A
    
 #### State Transistions
 
-- _List all the ways this agent can transition to this state_
+- If a small fish is within detection range AND they are alone
+   
+### Wander
+
+**Objective:** Wander around the world, enjoying life.
+
+#### Steering Behaviors
+
+- Wander - Self explanitory
+- Obstacles - Other Big Fish
+   
+#### State Transistions
+
+-Default state, will change to this state if cannot Chase.
 
 ## Sources
 
@@ -91,9 +88,8 @@ _A brief explanation of this agent._
 
 ## Make it Your Own
 
-- _List out what you added to your game to make it different for you_
-- _If you will add more agents or states make sure to list here and add it to the documention above_
-- _If you will add your own assets make sure to list it here and add it to the Sources section
+- New Agent: Jellyfish - Neutral mob that just bobs up and down, has a 5% chance to wander for 5 seconds (Everything will avoid the Jellyfish)
+- Soon to be more
 
 ## Known Issues
 
