@@ -11,7 +11,7 @@ _REPLACE OR REMOVE EVERYTING BETWEEN "\_"_
 
 ## Simulation Design
 
-- An aquarium with different species of marine life. Some species may flock together and some species may avoid each other.
+- An tropical sea of marine life
 
 ### Controls
 
