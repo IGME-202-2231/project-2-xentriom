@@ -302,6 +302,7 @@ MonoBehaviour:
   minSpawnInterval: 2
   maxSpawnInterval: 10
   bubbleSpeed: 1.5
+  destructionRate: 0.25
 --- !u!4 &1343988169
 Transform:
   m_ObjectHideFlags: 0

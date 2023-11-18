@@ -13,7 +13,6 @@ public class BubbleController : MonoBehaviour
     [Range(1, 5)] public int minSpawnInterval = 2;
     [Range(6, 10)] public int maxSpawnInterval = 10;
     [Range(0f, 10f)] public float bubbleSpeed = 1.5f;
-    [Range(0f, 1f)] public float destructionRate = 0.06f;
 
     private Vector2 camSize;
 
@@ -25,7 +24,7 @@ public class BubbleController : MonoBehaviour
         StartCoroutine(SpawnBubbles());
     }
 
-    IEnumerator SpawnBubbles()
+    private IEnumerator SpawnBubbles()
     {
         while (true)
         {
@@ -39,8 +38,8 @@ public class BubbleController : MonoBehaviour
                     Random.Range(-camSize.y + -camSize.y, -(camSize.y / 2)));
 
                 SpriteRenderer bubbleRenderer = GetRandomBubbleRenderer();
-
                 GameObject bubble = new GameObject("Bubble");
+
                 bubble.transform.position = spawnPosition;
                 bubble.AddComponent<SpriteRenderer>().sprite = bubbleRenderer.sprite;
                 bubble.transform.localScale = bubbleRenderer.transform.localScale;
@@ -48,28 +47,28 @@ public class BubbleController : MonoBehaviour
                 string sortingLayerName = GetRandomSortingLayer();
                 bubble.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayerName;
 
-                StartCoroutine(MoveUp(bubble, bubbleSpeed));
+                StartCoroutine(MoveUp(bubble, bubbleSpeed, 0.2f));
             }
 
             yield return new WaitForSeconds(spawnInterval);
         }
     }
 
-    SpriteRenderer GetRandomBubbleRenderer()
+    private SpriteRenderer GetRandomBubbleRenderer()
     {
         SpriteRenderer[] bubbleRenderers = { smallBubbleRenderer, mediumBubbleRenderer, largeBubbleRenderer };
         int randomIndex = Random.Range(0, 3);
         return bubbleRenderers[randomIndex];
     }
 
-    string GetRandomSortingLayer()
+    private string GetRandomSortingLayer()
     {
         string[] sortingLayers = { "Farground", "Foreground", "Midground" };
         int randomIndex = Random.Range(0, sortingLayers.Length);
         return sortingLayers[randomIndex];
     }
 
-    IEnumerator MoveUp(GameObject bubble, float speed)
+    private IEnumerator MoveUp(GameObject bubble, float speed)
     {
         float destructionChance = 0f;
 
@@ -77,9 +76,9 @@ public class BubbleController : MonoBehaviour
         {
             bubble.transform.Translate(Vector2.up * speed * Time.deltaTime);
 
-            destructionChance += destructionRate * bubble.transform.position.y;
+            destructionChance += 0.1f * bubble.transform.position.y;
 
-            if (Random.value < destructionChance)
+            if (Random.value < destructionChance + Random.Range(0f, 0.06f))
             {
                 Destroy(bubble);
                 yield break;
@@ -88,4 +87,36 @@ public class BubbleController : MonoBehaviour
             yield return null;
         }
     }
+
+    private IEnumerator MoveUp(GameObject bubble, float speed, float swayIntensity)
+    {
+        float destructionChance = 0f;
+
+        while (true)
+        {
+            bool shouldSway = Random.value < 0.5f;
+
+            if (shouldSway)
+            {
+                float horizontalSway = Mathf.Sin(Time.time * 2f) * swayIntensity;
+
+                bubble.transform.Translate(new Vector2(horizontalSway, 1f) * speed * Time.deltaTime);
+            }
+            else
+            {
+                bubble.transform.Translate(Vector2.up * speed * Time.deltaTime);
+            }
+
+            destructionChance += 0.1f * bubble.transform.position.y;
+
+            if (Random.value < destructionChance + Random.Range(0f, 0.06f))
+            {
+                Destroy(bubble);
+                yield break;
+            }
+
+            yield return null;
+        }
+    }
+
 }
