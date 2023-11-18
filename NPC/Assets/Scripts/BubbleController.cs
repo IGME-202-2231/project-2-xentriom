@@ -13,6 +13,7 @@ public class BubbleController : MonoBehaviour
     [Range(1, 5)] public int minSpawnInterval = 2;
     [Range(6, 10)] public int maxSpawnInterval = 10;
     [Range(0f, 10f)] public float bubbleSpeed = 1.5f;
+    [Range(0f, 1f)] public float destructionRate = 0.06f;
 
     private Vector2 camSize;
 
@@ -76,7 +77,7 @@ public class BubbleController : MonoBehaviour
         {
             bubble.transform.Translate(Vector2.up * speed * Time.deltaTime);
 
-            destructionChance += 0.06f * bubble.transform.position.y;
+            destructionChance += destructionRate * bubble.transform.position.y;
 
             if (Random.value < destructionChance)
             {
