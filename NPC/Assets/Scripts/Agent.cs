@@ -66,31 +66,14 @@ public abstract class Agent : MonoBehaviour
         totalForce += fleeingForce * weight;
     }
 
-    //protected void Wander(float weight = 1f)
-    //{
-    //    float wanderChange = maxWanderChangePS * Time.deltaTime;
-    //    wanderAngle += Random.Range(-wanderChange, wanderChange);
-
-    //    wanderAngle = Mathf.Clamp(wanderAngle, -maxWanderAngle, maxWanderAngle);
-
-    //    Vector3 wanderTarget = Quaternion.Euler(0, 0, wanderAngle) * physicsObject.Direction.normalized + physicsObject.Position;
-
-    //    Seek(wanderTarget, weight);
-    //}
-
     protected void Wander(float weight = 1f)
     {
-        float wanderRadius = 2f; // Adjust the radius based on your needs
-        float wanderDistance = 5f; // Adjust the distance based on your needs
+        float wanderChange = maxWanderChangePS * Time.deltaTime;
+        wanderAngle += Random.Range(-wanderChange, wanderChange);
 
-        // Calculate the new wander angle
-        wanderAngle += Random.Range(-maxWanderChangePS, maxWanderChangePS) * Time.deltaTime;
+        wanderAngle = Mathf.Clamp(wanderAngle, -maxWanderAngle, maxWanderAngle);
 
-        // Calculate the position on the circle
-        Vector3 circleOffset = new Vector3(Mathf.Cos(wanderAngle), Mathf.Sin(wanderAngle), 0f) * wanderRadius;
-
-        // Calculate the final wander target
-        Vector3 wanderTarget = physicsObject.Position + physicsObject.Direction.normalized * wanderDistance + circleOffset;
+        Vector3 wanderTarget = Quaternion.Euler(0, 0, wanderAngle) * physicsObject.Direction.normalized + physicsObject.Position;
 
         Seek(wanderTarget, weight);
     }
@@ -107,17 +90,6 @@ public abstract class Agent : MonoBehaviour
             Seek(Vector3.zero, weight);
         }
     }
-
-    //protected void StayInBounds(float weight = 1f)
-    //{
-    //    Vector3 randomTarget = new Vector3(
-    //        Random.Range(-physicsObject.CamSize.x, physicsObject.CamSize.x),
-    //        Random.Range(-physicsObject.CamSize.y, physicsObject.CamSize.y),
-    //        0f);
-
-    //    Seek(randomTarget, weight);
-    //}
-
 
     public Vector3 CalcFuturePosition(float time)
     {

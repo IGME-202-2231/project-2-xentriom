@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class BubbleController : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer smallBubbleRenderer;
-    [SerializeField] private SpriteRenderer mediumBubbleRenderer;
-    [SerializeField] private SpriteRenderer largeBubbleRenderer;
+    [SerializeField] private List<SpriteRenderer> bubblePrefab;
 
     [Range(1, 5)] public int minNumberOfBubbles = 1;
     [Range(6, 10)] public int maxNumberOfBubbles = 9;
@@ -33,59 +31,83 @@ public class BubbleController : MonoBehaviour
 
             for (int i = 0; i < numberOfBubbles; i++)
             {
-                Vector2 spawnPosition = new Vector2(
+                SortingLayerInfo sortingLayer = GetRandomSortingLayer();
+                string sortingLayerName = sortingLayer.Layer;
+                float sortingLayerZ = sortingLayer.Z;
+
+                Vector3 spawnPosition = new Vector3(
                     Random.Range(-camSize.x, camSize.x),
-                    Random.Range(-camSize.y + -camSize.y, -camSize.y));
+                    Random.Range(-camSize.y + -camSize.y, -camSize.y),
+                    sortingLayerZ - 0.1f);
 
-                SpriteRenderer bubbleRenderer = GetRandomBubbleRenderer();
-                GameObject bubble = new GameObject("Bubble");
-
-                bubble.transform.position = spawnPosition;
-                bubble.AddComponent<SpriteRenderer>().sprite = bubbleRenderer.sprite;
-                bubble.transform.localScale = bubbleRenderer.transform.localScale;
-
-                string sortingLayerName = GetRandomSortingLayer();
-                bubble.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayerName;
+                SpriteRenderer bubbleRenderer = bubblePrefab[Random.Range(0, 3)];
+                SpriteRenderer bubble = Instantiate(bubbleRenderer, spawnPosition, Quaternion.identity);
+                bubble.sortingLayerName = sortingLayerName;
 
                 ApplyDarkTint(bubble, sortingLayerName);
-
-                StartCoroutine(MoveUp(bubble, bubbleSpeed, 0.75f));
+                StartCoroutine(MoveUp(bubble.gameObject, bubbleSpeed, 0.75f));
             }
 
             yield return new WaitForSeconds(spawnInterval);
         }
     }
 
-    private SpriteRenderer GetRandomBubbleRenderer()
+    private SortingLayerInfo GetRandomSortingLayer()
     {
-        SpriteRenderer[] bubbleRenderers = {
-            smallBubbleRenderer,
-            mediumBubbleRenderer,
-            largeBubbleRenderer };
-        int randomIndex = Random.Range(0, 3);
-        return bubbleRenderers[randomIndex];
-    }
+        string[] sortingLayers = { "Background", "Farground", "Midground", "Foreground" };
+        float[] zValues = { 15, 10, 5, 0 };
 
-    private string GetRandomSortingLayer()
-    {
-        string[] sortingLayers = { "Farground", "Midground", "Foreground" };
         int randomIndex = Random.Range(0, sortingLayers.Length);
-        return sortingLayers[randomIndex];
+
+        SortingLayerInfo sortingLayerInfo = new SortingLayerInfo(
+            sortingLayers[randomIndex],
+            zValues[randomIndex]);
+
+        return sortingLayerInfo;
     }
 
-    private void ApplyDarkTint(GameObject bubble, string sortingLayerName)
+    private void ApplyDarkTint(SpriteRenderer bubble, string sortingLayerName)
     {
-        Color tint = new Color(255f, 255f, 255f, 0.8f);
-        if (sortingLayerName == "Midground")
+        Color tint;
+        float intensity;
+
+        switch (sortingLayerName)
         {
-            tint = new Color(138f, 138f, 138f, 0.5f);
-        }
-        else if (sortingLayerName == "Farground")
-        {
-            tint = new Color(0f, 0f, 0f, 0.2f);
+            case "Foreground":
+                intensity = 0.6f;
+                tint = new Color(
+                    bubble.color.r * intensity,
+                    bubble.color.g * intensity,
+                    bubble.color.b * intensity,
+                    0.9f);
+                break;
+            case "Midground":
+                intensity = 0.7f;
+                tint = new Color(
+                    bubble.color.r * intensity,
+                    bubble.color.g * intensity,
+                    bubble.color.b * intensity,
+                    0.9f);
+                break;
+            case "Farground":
+                intensity = 0.8f;
+                tint = new Color(
+                    bubble.color.r * intensity,
+                    bubble.color.g * intensity,
+                    bubble.color.b * intensity,
+                    0.9f);
+                break;
+            default:
+                intensity = 0.9f;
+                tint = new Color(
+                    bubble.color.r * intensity,
+                    bubble.color.g * intensity,
+                    bubble.color.b * intensity,
+                    0.9f);
+                break;
         }
 
-        bubble.GetComponent<SpriteRenderer>().color = tint;
+        bubble.color = tint;
     }
 
     private IEnumerator MoveUp(GameObject bubble, float speed, float swayIntensity)
