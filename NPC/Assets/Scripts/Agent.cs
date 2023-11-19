@@ -84,7 +84,7 @@ public abstract class Agent : MonoBehaviour
 
         if (futurePosition.x <= -physicsObject.CamSize.x ||
             futurePosition.x >= physicsObject.CamSize.x ||
-            futurePosition.y <= -physicsObject.CamSize.y / 2 + ((-physicsObject.CamSize.y / 2) / 2) ||
+            futurePosition.y <= -physicsObject.CamSize.y ||
             futurePosition.y >= physicsObject.CamSize.y)
         {
             Seek(Vector3.zero, weight);

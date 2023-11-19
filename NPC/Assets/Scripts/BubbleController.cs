@@ -9,9 +9,9 @@ public class BubbleController : MonoBehaviour
     [SerializeField] private SpriteRenderer largeBubbleRenderer;
 
     [Range(1, 5)] public int minNumberOfBubbles = 1;
-    [Range(6, 10)] public int maxNumberOfBubbles = 10;
+    [Range(6, 10)] public int maxNumberOfBubbles = 9;
     [Range(1, 5)] public int minSpawnInterval = 2;
-    [Range(6, 10)] public int maxSpawnInterval = 10;
+    [Range(6, 10)] public int maxSpawnInterval = 8;
     [Range(0f, 10f)] public float bubbleSpeed = 1.5f;
 
     private Vector2 camSize;
@@ -35,7 +35,7 @@ public class BubbleController : MonoBehaviour
             {
                 Vector2 spawnPosition = new Vector2(
                     Random.Range(-camSize.x, camSize.x),
-                    Random.Range(-camSize.y + -camSize.y, -(camSize.y / 2)));
+                    Random.Range(-camSize.y + -camSize.y, -camSize.y));
 
                 SpriteRenderer bubbleRenderer = GetRandomBubbleRenderer();
                 GameObject bubble = new GameObject("Bubble");
@@ -47,7 +47,9 @@ public class BubbleController : MonoBehaviour
                 string sortingLayerName = GetRandomSortingLayer();
                 bubble.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayerName;
 
-                StartCoroutine(MoveUp(bubble, bubbleSpeed, 0.2f));
+                ApplyDarkTint(bubble, sortingLayerName);
+
+                StartCoroutine(MoveUp(bubble, bubbleSpeed, 0.75f));
             }
 
             yield return new WaitForSeconds(spawnInterval);
@@ -66,9 +68,24 @@ public class BubbleController : MonoBehaviour
 
     private string GetRandomSortingLayer()
     {
-        string[] sortingLayers = { "Farground", "Foreground", "Midground" };
+        string[] sortingLayers = { "Farground", "Midground", "Foreground" };
         int randomIndex = Random.Range(0, sortingLayers.Length);
         return sortingLayers[randomIndex];
+    }
+
+    private void ApplyDarkTint(GameObject bubble, string sortingLayerName)
+    {
+        Color tint = new Color(255f, 255f, 255f, 0.8f);
+        if (sortingLayerName == "Midground")
+        {
+            tint = new Color(138f, 138f, 138f, 0.5f);
+        }
+        else if (sortingLayerName == "Farground")
+        {
+            tint = new Color(0f, 0f, 0f, 0.2f);
+        }
+
+        bubble.GetComponent<SpriteRenderer>().color = tint;
     }
 
     private IEnumerator MoveUp(GameObject bubble, float speed, float swayIntensity)
@@ -77,21 +94,25 @@ public class BubbleController : MonoBehaviour
 
         while (true)
         {
-            bool shouldSway = Random.value < 0.5f;
-
-            if (shouldSway)
+            float randomValue = Random.value;
+            if (randomValue < 0.2f)
             {
-                float horizontalSway = Mathf.Sin(Time.time * 2f) * swayIntensity;
+                float rightSway = Mathf.Sin(Time.time * 2f) * swayIntensity;
 
-                bubble.transform.Translate(new Vector2(horizontalSway, 1f) * speed * Time.deltaTime);
+                bubble.transform.Translate(new Vector2(rightSway, 1f) * speed * Time.deltaTime);
+            }
+            else if (randomValue >= 0.2f && randomValue < 0.4f)
+            {
+                float leftsway = Mathf.Sin(Time.time * 2f) * -swayIntensity;
+
+                bubble.transform.Translate(new Vector2(leftsway, 1f) * speed * Time.deltaTime);
             }
             else
             {
                 bubble.transform.Translate(Vector2.up * speed * Time.deltaTime);
             }
 
-            destructionChance += 0.1f * bubble.transform.position.y;
-
+            destructionChance += 0.15f * bubble.transform.position.y + Random.Range(0f, 0.8f);
             if (Random.value < destructionChance + Random.Range(0f, 0.06f))
             {
                 Destroy(bubble);
@@ -101,5 +122,4 @@ public class BubbleController : MonoBehaviour
             yield return null;
         }
     }
-
 }
