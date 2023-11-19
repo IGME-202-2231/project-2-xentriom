@@ -43,7 +43,7 @@ public class BubbleController : MonoBehaviour
                 bubble.sortingLayerName = sortingLayer.Layer.ToString();
 
                 ApplyDarkTint(bubble, sortingLayer.Layer);
-                StartCoroutine(MoveUp(bubble.gameObject, bubbleSpeed, 0.75f));
+                StartCoroutine(MoveUp(bubble.gameObject, bubbleSpeed, 0.5f));
             }
 
             yield return new WaitForSeconds(spawnInterval);
@@ -55,15 +55,11 @@ public class BubbleController : MonoBehaviour
         EnvLayers[] sortingLayers = {
             EnvLayers.Background,
             EnvLayers.Farground,
-            EnvLayers.Midground,
-            EnvLayers.Foreground};
-        float[] zValues = { 15, 10, 5, 0 };
+            EnvLayers.Midground};
 
         int randomIndex = Random.Range(0, sortingLayers.Length);
 
-        SortingLayerInfo sortingLayerInfo = new SortingLayerInfo(
-            sortingLayers[randomIndex],
-            zValues[randomIndex]);
+        SortingLayerInfo sortingLayerInfo = new SortingLayerInfo(sortingLayers[randomIndex]);
 
         return sortingLayerInfo;
     }
@@ -76,20 +72,22 @@ public class BubbleController : MonoBehaviour
         switch (sortingLayerName)
         {
             case EnvLayers.Background:
-                intensity = 0.2f;
+                intensity = 0.8f;
                 tint = new Color(
                     bubble.color.r * intensity,
                     bubble.color.g * intensity,
                     bubble.color.b * intensity,
-                    0.9f);
+                    0.7f);
+                bubble.color = tint;
                 break;
             case EnvLayers.Farground:
-                intensity = 0.7f;
+                intensity = 0.8f;
                 tint = new Color(
                     bubble.color.r * intensity,
                     bubble.color.g * intensity,
                     bubble.color.b * intensity,
-                    0.9f);
+                    0.8f);
+                bubble.color = tint;
                 break;
             case EnvLayers.Midground:
                 intensity = 0.8f;
@@ -98,18 +96,9 @@ public class BubbleController : MonoBehaviour
                     bubble.color.g * intensity,
                     bubble.color.b * intensity,
                     0.9f);
-                break;
-            default:
-                intensity = 0.9f;
-                tint = new Color(
-                    bubble.color.r * intensity,
-                    bubble.color.g * intensity,
-                    bubble.color.b * intensity,
-                    0.9f);
+                bubble.color = tint;
                 break;
         }
-
-        bubble.color = tint;
     }
 
 
