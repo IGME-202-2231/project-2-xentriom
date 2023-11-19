@@ -32,19 +32,17 @@ public class BubbleController : MonoBehaviour
             for (int i = 0; i < numberOfBubbles; i++)
             {
                 SortingLayerInfo sortingLayer = GetRandomSortingLayer();
-                string sortingLayerName = sortingLayer.Layer;
-                float sortingLayerZ = sortingLayer.Z;
 
                 Vector3 spawnPosition = new Vector3(
                     Random.Range(-camSize.x, camSize.x),
                     Random.Range(-camSize.y + -camSize.y, -camSize.y),
-                    sortingLayerZ - 0.1f);
+                    sortingLayer.Z - 0.1f);
 
                 SpriteRenderer bubbleRenderer = bubblePrefab[Random.Range(0, 3)];
                 SpriteRenderer bubble = Instantiate(bubbleRenderer, spawnPosition, Quaternion.identity);
-                bubble.sortingLayerName = sortingLayerName;
+                bubble.sortingLayerName = sortingLayer.Layer.ToString();
 
-                ApplyDarkTint(bubble, sortingLayerName);
+                ApplyDarkTint(bubble, sortingLayer.Layer);
                 StartCoroutine(MoveUp(bubble.gameObject, bubbleSpeed, 0.75f));
             }
 
@@ -54,7 +52,11 @@ public class BubbleController : MonoBehaviour
 
     private SortingLayerInfo GetRandomSortingLayer()
     {
-        string[] sortingLayers = { "Background", "Farground", "Midground", "Foreground" };
+        EnvLayers[] sortingLayers = {
+            EnvLayers.Background,
+            EnvLayers.Farground,
+            EnvLayers.Midground,
+            EnvLayers.Foreground};
         float[] zValues = { 15, 10, 5, 0 };
 
         int randomIndex = Random.Range(0, sortingLayers.Length);
@@ -66,22 +68,22 @@ public class BubbleController : MonoBehaviour
         return sortingLayerInfo;
     }
 
-    private void ApplyDarkTint(SpriteRenderer bubble, string sortingLayerName)
+    private void ApplyDarkTint(SpriteRenderer bubble, EnvLayers sortingLayerName)
     {
         Color tint;
         float intensity;
 
         switch (sortingLayerName)
         {
-            case "Foreground":
-                intensity = 0.6f;
+            case EnvLayers.Background:
+                intensity = 0.2f;
                 tint = new Color(
                     bubble.color.r * intensity,
                     bubble.color.g * intensity,
                     bubble.color.b * intensity,
                     0.9f);
                 break;
-            case "Midground":
+            case EnvLayers.Farground:
                 intensity = 0.7f;
                 tint = new Color(
                     bubble.color.r * intensity,
@@ -89,7 +91,7 @@ public class BubbleController : MonoBehaviour
                     bubble.color.b * intensity,
                     0.9f);
                 break;
-            case "Farground":
+            case EnvLayers.Midground:
                 intensity = 0.8f;
                 tint = new Color(
                     bubble.color.r * intensity,
@@ -109,6 +111,7 @@ public class BubbleController : MonoBehaviour
 
         bubble.color = tint;
     }
+
 
     private IEnumerator MoveUp(GameObject bubble, float speed, float swayIntensity)
     {
