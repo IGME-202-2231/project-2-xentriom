@@ -86,7 +86,7 @@ The bigger fish will avoid each other and for the most part wander around aimles
 
 ## Make it Your Own
 
-- New Agent: Jellyfish - Neutral mob that just bobs up and down, has a 5% chance to wander for 5 seconds (Everything will avoid the Jellyfish)
+- New Agent: Octopus/Squid - Neutral mob that just bobs up and down, has a 5% chance to wander for 5 seconds (Everything will avoid the Jellyfish)
 - Soon to be more
 
 ## Known Issues
