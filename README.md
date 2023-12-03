@@ -83,6 +83,8 @@ The bigger fish will avoid each other and for the most part wander around aimles
 
 -   Background: https://olgas-lab.itch.io/underwater-background
 -   Marine Life: https://rkuhlf-assets.itch.io/aquatic-animal-models
+-   Marine Life: https://pixel-duarte.itch.io/pixel-ocean
+
 
 ## Make it Your Own
 
