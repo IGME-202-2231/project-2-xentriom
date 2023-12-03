@@ -8,6 +8,9 @@ TagManager:
   - Octopus
   - Shark
   - Clownfish
+  - Eel
+  - Squid
+  - Swordfish
   layers:
   - Default
   - TransparentFX

@@ -12,11 +12,13 @@ public class PhysicsObject : MonoBehaviour
     [SerializeField] float radius;
 
     private Vector3 camSize;
+    private Vector2 spriteMin;
+    private Vector2 spriteMax;
 
     public float Radius { get { return radius; } }
     public Vector3 Velocity { get { return velocity; } }
     public Vector3 Direction { get { return direction; } }
-    public Vector3 Position { get { return transform.position; } }
+    public Vector3 Position { get { return transform.position; } set { { transform.position = value; } } }
     public Vector3 CamSize { get { return camSize; } }
 
     // Start is called before the first frame update
@@ -26,12 +28,14 @@ public class PhysicsObject : MonoBehaviour
         camSize.x = camSize.y * Camera.main.aspect;
 
         direction = Random.insideUnitCircle.normalized;
+
+        spriteMin = new Vector2(0, 0);
+        spriteMax = new Vector2(0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Calculate the velocity for this frame
         velocity += acceleration * Time.deltaTime;
 
         transform.position += velocity * Time.deltaTime;

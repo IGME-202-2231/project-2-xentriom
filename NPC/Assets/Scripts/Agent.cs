@@ -66,7 +66,7 @@ public abstract class Agent : MonoBehaviour
         totalForce += fleeingForce * weight;
     }
 
-    protected void Wander(float weight = 1f)
+    protected void Wander(float weight = 5f)
     {
         float wanderChange = maxWanderChangePS * Time.deltaTime;
         wanderAngle += Random.Range(-wanderChange, wanderChange);
@@ -94,5 +94,10 @@ public abstract class Agent : MonoBehaviour
     public Vector3 CalcFuturePosition(float time)
     {
         return physicsObject.Position + physicsObject.Velocity * time;
+    }
+
+    protected void AvoidObstacle()
+    {
+
     }
 }

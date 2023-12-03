@@ -333,10 +333,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agentPrefabs:
-  - {fileID: 2022036273397845949, guid: 7c6303ea4f279a0448f7e38470d26ca2, type: 3}
-  - {fileID: 4972658214013244876, guid: 3901484d89c26ab40a5f3d2aeda149bf, type: 3}
-  - {fileID: 6105795410577983554, guid: 0cf143466781165409d2d8898b46f586, type: 3}
-  - {fileID: 4503845459857655284, guid: 078b5cfcb0ddd71408b35e30816213b9, type: 3}
+  - {fileID: 9114054046335595605, guid: 5f6d29ab8814f49c885a149769d7a5be, type: 3}
+  - {fileID: 3866951702455716395, guid: 733a0fb51fbda4c3aba0e2bc3b262c62, type: 3}
+  - {fileID: 2119707473348180052, guid: cf17abb74389e4f8c9d9e820331e63b3, type: 3}
+  - {fileID: 2086994190873903286, guid: 47dee929b5d564aa8a0078d1d9f612b2, type: 3}
 --- !u!1 &1534419261
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,69 +23,23 @@ public class AgentSpawner : MonoBehaviour
         
     }
 
-    //private void Spawn()
-    //{
-    //    // Count of each agent type
-    //    int sharkCount = 1;
-    //    int octopusCount = 3;
-    //    int doryCount = 8;
-    //    int clownfishCount = 9;
-
-    //    // Iterate over the agentPrefabs list and spawn agents based on counts
-    //    foreach (GameObject agentPrefab in agentPrefabs)
-    //    {
-    //        int count = 0;
-
-    //        switch (agentPrefab.tag)
-    //        {
-    //            case "Shark":
-    //                count = sharkCount;
-    //                sharkCount = 0;
-    //                break;
-    //            case "Octopus":
-    //                count = octopusCount;
-    //                octopusCount = 0;
-    //                break;
-    //            case "Dory":
-    //                count = doryCount;
-    //                doryCount = 0;
-    //                break;
-    //            case "Clownfish":
-    //                count = clownfishCount;
-    //                clownfishCount = 0;
-    //                break;
-    //            default:
-    //                break;
-    //        }
-
-    //        // Spawn agents
-    //        for (int i = 0; i < count; i++)
-    //        {
-    //            Vector2 spawnPosition = new Vector2(
-    //                Random.Range(-camSize.x, camSize.x),
-    //                Random.Range(-camSize.y, camSize.y));
-    //            Instantiate(agentPrefab, spawnPosition, Quaternion.Euler(0f, 90f, 0f));
-    //        }
-    //    }
-    //}
-
     private void Spawn()
     {
         // Count of each agent type
-        int sharkCount = 1;
+        int sharkCount = 3;
         int octopusCount = 3;
-        int doryCount = 8;
-        int clownfishCount = 9;
+        int doryCount = 3;
+        int clownfishCount = 15;
 
         // Iterate over the agentPrefabs list and spawn agents based on counts
         foreach (GameObject agentPrefab in agentPrefabs)
         {
             int count = 0;
-            string sortingLayerName = "";  // Predefined sorting layer for each agent type
+            string sortingLayerName = "";
 
             switch (agentPrefab.tag)
             {
-                case "Shark":
+                case "Swordfish":
                     count = sharkCount;
                     sharkCount = 0;
                     sortingLayerName = "Farground";
@@ -95,12 +49,12 @@ public class AgentSpawner : MonoBehaviour
                     octopusCount = 0;
                     sortingLayerName = "Background";
                     break;
-                case "Dory":
+                case "Squid":
                     count = doryCount;
                     doryCount = 0;
                     sortingLayerName = "Midground";
                     break;
-                case "Clownfish":
+                case "Eel":
                     count = clownfishCount;
                     clownfishCount = 0;
                     sortingLayerName = "Foreground";
@@ -119,7 +73,7 @@ public class AgentSpawner : MonoBehaviour
                     (int)Enum.Parse(typeof(EnvLayers), sortingLayerName));
 
                 // Instantiate the agent with the adjusted z value
-                Instantiate(agentPrefab, spawnPosition, Quaternion.Euler(0f, 90f, 0f));
+                Instantiate(agentPrefab, spawnPosition, Quaternion.identity);
             }
         }
     }
