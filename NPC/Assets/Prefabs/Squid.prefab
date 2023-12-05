@@ -11,9 +11,6 @@ GameObject:
   - component: {fileID: 4303161249774660593}
   - component: {fileID: 1136843582904052275}
   - component: {fileID: 7945025947138682643}
-  - component: {fileID: 3621515854002987635}
-  - component: {fileID: 405644365797502538}
-  - component: {fileID: 7725278456664972412}
   m_Layer: 0
   m_Name: Squid
   m_TagString: Squid
@@ -109,53 +106,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3621515854002987635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119707473348180052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24fc4542f328d4a81b5f4ed71fe11d67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
-  velocity: {x: 0, y: 0, z: 0}
-  acceleration: {x: 0, y: 0, z: 0}
-  mass: 1
-  radius: 0
---- !u!114 &405644365797502538
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119707473348180052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63f03103219b545e1b4e4e6174f170d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physicsObject: {fileID: 3621515854002987635}
-  maxForce: 10
-  maxSpeed: 10
-  wanderWeight: 1
-  stayInBoundWeight: 3
---- !u!114 &7725278456664972412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119707473348180052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 508105aaf461446439ae9591fc3ff55b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physicsObject: {fileID: 3621515854002987635}
-  maxForce: 10
-  maxSpeed: 10
-  target: {fileID: 3866951702455716395, guid: 733a0fb51fbda4c3aba0e2bc3b262c62, type: 3}

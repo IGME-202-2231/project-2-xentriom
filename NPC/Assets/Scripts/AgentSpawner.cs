@@ -6,7 +6,11 @@ using UnityEngine;
 public class AgentSpawner : MonoBehaviour
 {
     [SerializeField] List<GameObject> agentPrefabs;
+    [SerializeField] List<SpriteRenderer> obstacleList;
+
     private Vector2 camSize;
+
+    public List<SpriteRenderer> ObstacleList { get => obstacleList; set { obstacleList = value; } } 
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +32,6 @@ public class AgentSpawner : MonoBehaviour
         // Count of each agent type
         int sharkCount = 3;
         int octopusCount = 3;
-        int doryCount = 3;
         int clownfishCount = 15;
 
         // Iterate over the agentPrefabs list and spawn agents based on counts
@@ -48,11 +51,6 @@ public class AgentSpawner : MonoBehaviour
                     count = octopusCount;
                     octopusCount = 0;
                     sortingLayerName = "Background";
-                    break;
-                case "Squid":
-                    count = doryCount;
-                    doryCount = 0;
-                    sortingLayerName = "Midground";
                     break;
                 case "Eel":
                     count = clownfishCount;

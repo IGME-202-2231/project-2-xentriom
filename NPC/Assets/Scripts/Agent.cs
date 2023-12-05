@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(PhysicsObject))]
 public abstract class Agent : MonoBehaviour
 {
+    [SerializeField] List<SpriteRenderer> obstacleList;
+    [SerializeField] protected AgentSpawner agentSpawner;
     [SerializeField] protected PhysicsObject physicsObject;
     [SerializeField] protected float maxForce = 10;
     [SerializeField] protected float maxSpeed = 10;
@@ -96,8 +98,53 @@ public abstract class Agent : MonoBehaviour
         return physicsObject.Position + physicsObject.Velocity * time;
     }
 
-    protected void AvoidObstacle()
+    protected void AvoidObstacle(float time, float weight)
     {
+        Vector3 totalAvoidForce = Vector3.zero;
 
+        foreach (var obstacle in agentSpawner.ObstacleList)
+        {
+            Vector3 agentToObstacle = obstacle.transform.position - transform.position;
+            float rightDot = 0, forwardDot = 0;
+
+            //find whether if the obstacle is in front or behind agent.
+            //positive if in front, negative if behind
+            forwardDot = Vector3.Dot(physicsObject.Direction, agentToObstacle);
+
+            //because it's wandering, future position is needed
+            Vector3 futurePos = CalcFuturePosition(time);
+
+            float dist = Vector3.Distance(transform.position, futurePos) + physicsObject.Radius;
+
+            //if in front of me
+            if (forwardDot >= 0)
+            {
+                //within the box in front of us (give obstacle a radius)
+                //if (forwardDot <= dist + obstacle.radius)
+                if (forwardDot <= dist + 5)
+                {
+                    // how far left/right?
+                    rightDot = Vector3.Dot(transform.right, agentToObstacle);
+
+                    //Vector3 steeringForceR = transform.right / Mathf.Abs(forwardDot/dist) * physicsObject.MaxForce;
+                    Vector3 steeringForce = transform.right * (1 - forwardDot / dist) * maxForce;
+
+                    // is the Obstacle withint the safe box width?
+                    // if (Mathf.Abs(rightDot) <= (physicsObject.Radius + obstacle.Radius) || Mathf.Abs(rightDot) >= (physicsObject.Radius + obstacle.Radius))
+                    if (Mathf.Abs(rightDot) <= (physicsObject.Radius + 5) || Mathf.Abs(rightDot) >= (physicsObject.Radius + 5))
+                    {
+                        if (rightDot < 0)
+                        {
+                            totalAvoidForce += steeringForce;
+                        }
+                        else if (rightDot > 0)
+                        {
+                            totalAvoidForce += -steeringForce;
+                        }
+                    }
+                }
+            }
+        }
+        totalForce += totalAvoidForce * maxForce * weight;
     }
 }

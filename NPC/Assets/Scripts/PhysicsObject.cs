@@ -12,8 +12,6 @@ public class PhysicsObject : MonoBehaviour
     [SerializeField] float radius;
 
     private Vector3 camSize;
-    private Vector2 spriteMin;
-    private Vector2 spriteMax;
 
     public float Radius { get { return radius; } }
     public Vector3 Velocity { get { return velocity; } }
@@ -28,9 +26,6 @@ public class PhysicsObject : MonoBehaviour
         camSize.x = camSize.y * Camera.main.aspect;
 
         direction = Random.insideUnitCircle.normalized;
-
-        spriteMin = new Vector2(0, 0);
-        spriteMax = new Vector2(0, 0);
     }
 
     // Update is called once per frame

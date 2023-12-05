@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8656555120435251267}
   - component: {fileID: 5328150223842942688}
   - component: {fileID: 7489138595787269483}
-  - component: {fileID: 7602628314546798949}
   m_Layer: 0
   m_Name: Octopus
   m_TagString: Octopus
@@ -143,19 +142,3 @@ MonoBehaviour:
   maxSpeed: 10
   wanderWeight: 1
   stayInBoundWeight: 3
---- !u!114 &7602628314546798949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3866951702455716395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e004fe688c7044b5aa4d75bbf02a8d74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  physicsObject: {fileID: 5328150223842942688}
-  maxForce: 10
-  maxSpeed: 10
-  target: {fileID: 2119707473348180052, guid: cf17abb74389e4f8c9d9e820331e63b3, type: 3}
