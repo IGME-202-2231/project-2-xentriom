@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1765629777030381025}
   - component: {fileID: 666728331441610875}
   - component: {fileID: 1009991869596104189}
+  - component: {fileID: 2795152642504189365}
   m_Layer: 0
   m_Name: Eel
   m_TagString: Eel
@@ -137,8 +138,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f03103219b545e1b4e4e6174f170d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleList: []
+  agentSpawner: {fileID: 0}
   physicsObject: {fileID: 666728331441610875}
   maxForce: 10
   maxSpeed: 10
   wanderWeight: 1
   stayInBoundWeight: 3
+--- !u!114 &2795152642504189365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9114054046335595605}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 508105aaf461446439ae9591fc3ff55b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleList: []
+  agentSpawner: {fileID: 0}
+  physicsObject: {fileID: 666728331441610875}
+  maxForce: 10
+  maxSpeed: 10
+  target: {fileID: 2086994190873903286, guid: 47dee929b5d564aa8a0078d1d9f612b2, type: 3}

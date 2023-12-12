@@ -7,6 +7,13 @@ public class AgentSpawner : MonoBehaviour
 {
     [SerializeField] List<GameObject> agentPrefabs;
     [SerializeField] List<SpriteRenderer> obstacleList;
+    private List<GameObject> spawnedCreatures = new List<GameObject>();
+
+    public List<GameObject> SpawnedCreatures
+    {
+        get { return spawnedCreatures; }
+        set { spawnedCreatures = value; }
+    }
 
     private Vector2 camSize;
 
@@ -71,7 +78,9 @@ public class AgentSpawner : MonoBehaviour
                     (int)Enum.Parse(typeof(EnvLayers), sortingLayerName));
 
                 // Instantiate the agent with the adjusted z value
-                Instantiate(agentPrefab, spawnPosition, Quaternion.identity);
+                GameObject spawnedAgent = Instantiate(agentPrefab, spawnPosition, Quaternion.identity);
+
+                spawnedCreatures.Add(spawnedAgent);
             }
         }
     }

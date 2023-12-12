@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1567949470229431045}
   - component: {fileID: 6560235795599591016}
   - component: {fileID: 3034200081135061512}
+  - component: {fileID: 5663325716084813230}
   m_Layer: 0
   m_Name: Swordfish
   m_TagString: Swordfish
@@ -137,8 +138,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f03103219b545e1b4e4e6174f170d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleList: []
+  agentSpawner: {fileID: 0}
   physicsObject: {fileID: 6560235795599591016}
   maxForce: 10
   maxSpeed: 10
   wanderWeight: 1
   stayInBoundWeight: 3
+--- !u!114 &5663325716084813230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086994190873903286}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e004fe688c7044b5aa4d75bbf02a8d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleList: []
+  agentSpawner: {fileID: 0}
+  physicsObject: {fileID: 6560235795599591016}
+  maxForce: 10
+  maxSpeed: 10
+  target: {fileID: 9114054046335595605, guid: 5f6d29ab8814f49c885a149769d7a5be, type: 3}
