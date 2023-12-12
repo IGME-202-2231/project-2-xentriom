@@ -13,10 +13,9 @@
 
 ### Controls
 
--   Ideally, I want the player to have no control but for the requirement
--   You can drop small fish food in and the smaller fish will try and get it.
+-   A button to induce and stop frenzy, frenzy is when the swordfishes go after all the eels and the eels will try and flee
 
-## Small Fish
+## EELS
 
 The smaller fish will flock together and try to stay near each other. If the group is too large they will split into smaller groups. They will also attempt to avoid the bigger fishes.
 
@@ -48,7 +47,7 @@ The smaller fish will flock together and try to stay near each other. If the gro
 
 If seperated from group and alone, you will be in this state
 
-## Big Fish
+## SWORDFISH
 
 The bigger fish will avoid each other and for the most part wander around aimlessly.
 
@@ -93,7 +92,9 @@ The bigger fish will avoid each other and for the most part wander around aimles
 
 ## Known Issues
 
-_List any errors, lack of error checking, or specific information that I need to know to run your program_
+- Many things went wrong, the obstacle avoidance somewhat works? Like i have 4 different layers the fish can be in so it is based on that. Well i tried to make it base on that.
+- Steering behaviors are off... wander does not wander, seek and flee goes crazy sometimes... yeah.
+
 
 ### Requirements not completed
 
